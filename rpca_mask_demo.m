@@ -31,13 +31,13 @@ fprintf('%s_E is the sparse part and %s_A is the low rank part\n', ...
 %% Run evaluation
 RUN_EVALUATION = 1;  % Set RUN_EVALUATION = 0 if no evaluation is needed.
 if RUN_EVALUATION
-    wavinA = audioread([filename, '_music.wav']);
-    wavinE = audioread([filename, '_vocal.wav']);
+    wavinA = audioread([filename, '_music.wav']);  % Load groundtruth music files
+    wavinE = audioread([filename, '_vocal.wav']);  % Load groundtruth vocal files
     %% GNSDR computation
     [s_target, e_interf, e_artif] = bss_decomp_gain(wavinmix', 1, wavinE');
     [sdr_mixture, sir_mixture, sar_mixture] = bss_crit(s_target, e_interf, e_artif);
     evaluation_results =rpca_mask_evaluation(wavinA, wavinE, outputs);
-    %% NSDR = SDR(estimated voice, voice)-SDR(mixture, voice)
+    %% NSDR = SDR(estimated voice, voice) - SDR(mixture, voice)
     NSDR = evaluation_results.SDR - sdr_mixture;
     fprintf('SDR:%f\nSIR:%f\nSAR:%f\nNSDR:%f\n', ...
         evaluation_results.SDR, evaluation_results.SIR, ...
