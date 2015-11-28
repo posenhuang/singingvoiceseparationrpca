@@ -1,4 +1,4 @@
-This package contains the Matlab codes implementing the RPCA source separation algorithm described in 
+This package contains the Matlab codes implementing the RPCA source separation algorithm described in
 "Singing-Voice Separation From Monaural Recordings Using Robust Principal Component Analysis," ICASSP 2012.
 
 Our algorithm is composed of the following parts:
@@ -13,6 +13,7 @@ The algorithm achieves the state-of-the-art performance on MIR-1K Dataset in an 
 Reference: https://sites.google.com/site/unvoicedsoundseparation/mir-1k
 
 
-Run rpca_mask_run.m to see how the functions are called. 
+Run rpca_mask_demo.m to see how the functions are called.
+Change RUN_EVALUATION = 0 if you don't need evaluation.
 For demo, please check: https://sites.google.com/site/singingvoiceseparationrpca/
-For any questions, please email to Po-Sen Huang: huang146@illinois.edu
+For any questions, please email to Po-Sen Huang: huang146 AT illinois EOT edu
