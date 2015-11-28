@@ -1,6 +1,5 @@
-function Parms=rpca_mask_fun(wavinA,wavinE,wavinmix,parm)
+function outputs = rpca_mask_execute(wavinmix, parm)
     %% parameters
-
     lambda = parm.lambda;
     nFFT = parm.nFFT;
     winsize = parm.windowsize;
@@ -16,10 +15,10 @@ function Parms=rpca_mask_fun(wavinA,wavinE,wavinmix,parm)
 
    %% use inexact_alm_rpca to run RPCA
     try                
-        [A_mag E_mag] = inexact_alm_rpca(abs(S).^power',lambda/sqrt(max(size(S))));
+        [A_mag, E_mag] = inexact_alm_rpca(abs(S).^power',lambda/sqrt(max(size(S))));
         PHASE = angle(S');            
     catch err
-        [A_mag E_mag] = inexact_alm_rpca(abs(S).^power,lambda/sqrt(max(size(S))));
+        [A_mag, E_mag] = inexact_alm_rpca(abs(S).^power,lambda/sqrt(max(size(S))));
         PHASE = angle(S);
     end
     
@@ -54,33 +53,10 @@ function Parms=rpca_mask_fun(wavinA,wavinE,wavinmix,parm)
     end
 
     wavoutE=wavoutE/max(abs(wavoutE));
-    wavwrite(wavoutE,Fs,[outputname,'_E']);
+    audiowrite([outputname,'_E.wav'], wavoutE, Fs);
 
     wavoutA=wavoutA/max(abs(wavoutA));
-    wavwrite(wavoutA,Fs,[outputname,'_A']);
+    audiowrite([outputname,'_A.wav'], wavoutA, Fs);
 
-    %% evaluate
-    if length(wavoutA)==length(wavinA)
-
-        sep = [wavoutA , wavoutE]';
-        orig = [wavinA , wavinE]';
-
-        for i = 1:size( sep, 1)
-               [e1,e2,e3] = bss_decomp_gain( sep(i,:), i, orig);
-               [sdr(i),sir(i),sar(i)] = bss_crit( e1, e2, e3);
-        end
-    else
-        minlength=min( length(wavoutE), length(wavinE) );
-
-        sep = [wavoutA(1:minlength) , wavoutE(1:minlength)]';
-        orig = [wavinA(1:minlength) , wavinE(1:minlength)]';
-
-        for i = 1:size( sep, 1)
-               [e1,e2,e3] = bss_decomp_gain( sep(i,:), i, orig);
-               [sdr(i),sir(i),sar(i)] = bss_crit( e1, e2, e3);
-        end
-    end
-
-    Parms.SDR=sdr(2);
-    Parms.SIR=sir(2);
-    Parms.SAR=sar(2);
+    outputs.wavoutA = wavoutA;
+    outputs.wavoutE = wavoutE;
