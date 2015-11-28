@@ -29,8 +29,8 @@ fprintf('Output separation results are in %s\n', parm.outname)
 fprintf('%s_E is the sparse part and %s_A is the low rank part\n', ...
     parm.outname, parm.outname)
 %% Run evaluation
-run_evaluation = 1;
-if run_evaluation
+RUN_EVALUATION = 1;  % Set RUN_EVALUATION = 0 if no evaluation is needed.
+if RUN_EVALUATION
     wavinA = audioread([filename, '_music.wav']);
     wavinE = audioread([filename, '_vocal.wav']);
     %% GNSDR computation
