@@ -14,6 +14,6 @@ Reference: https://sites.google.com/site/unvoicedsoundseparation/mir-1k
 
 
 Run rpca_mask_demo.m to see how the functions are called.
-Change [RUN_EVALUATION = 0] (https://github.com/posenhuang/singingvoiceseparationrpca/blob/master/rpca_mask_demo.m#L32) if you don't need evaluation.
+Change [RUN_EVALUATION = 0](https://github.com/posenhuang/singingvoiceseparationrpca/blob/master/rpca_mask_demo.m#L32) if you don't need evaluation.
 For demo, please check: https://sites.google.com/site/singingvoiceseparationrpca/
 For any questions, please email to Po-Sen Huang: huang146 AT illinois EOT edu
