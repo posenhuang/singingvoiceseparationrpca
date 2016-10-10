@@ -19,3 +19,6 @@ Change [RUN_EVALUATION = 0](https://github.com/posenhuang/singingvoiceseparation
 For more information, please check: https://sites.google.com/site/singingvoiceseparationrpca/
 
 For any questions, please email to Po-Sen Huang: huang146 AT illinois EOT edu
+
+##License
+Free for personal or research use; for commercial use please contact me.
