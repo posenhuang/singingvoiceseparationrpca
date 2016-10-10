@@ -21,4 +21,4 @@ For more information, please check: https://sites.google.com/site/singingvoicese
 For any questions, please email to Po-Sen Huang: huang146 AT illinois EOT edu
 
 ##License
-Free for personal or research use; for commercial use please contact me.
+Apache License. For commercial use, please contact me.
